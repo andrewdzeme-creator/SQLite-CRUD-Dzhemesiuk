@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}{{ heading }} · Каталог книг{% endblock %}
+{% block content %}
+<h1>{{ heading }}</h1>
+{% if error %}<p class="error" role="alert">{{ error }}</p>{% endif %}
+<form class="book-form" method="post">
+  <label>Назва<input name="title" maxlength="200" required value="{{ book.get('title', '') }}"></label>
+  <label>Автор<input name="author" maxlength="120" required value="{{ book.get('author', '') }}"></label>
+  <label>Рік видання<input name="publication_year" type="number" min="1" max="9999"
+    required value="{{ book.get('publication_year', '') }}"></label>
+  <label>Статус
+    <select name="status" required>
+      {% for value, label in statuses.items() %}
+      <option value="{{ value }}" {% if book.get('status') == value %}selected{% endif %}>{{ label }}</option>
+      {% endfor %}
+    </select>
+  </label>
+  <div class="actions">
+    <button class="button" type="submit">Зберегти</button>
+    <a href="{{ url_for('index') }}">Скасувати</a>
+  </div>
+</form>
+{% endblock %}

@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Каталог книг{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
+</head>
+<body>
+  <nav aria-label="Головна навігація"><a href="{{ url_for('index') }}">Каталог книг</a></nav>
+  <main>{% block content %}{% endblock %}</main>
+</body>
+</html>
